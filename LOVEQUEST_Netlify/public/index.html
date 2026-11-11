@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#170d25"><title>LOVEQUEST — найди свою пару</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+:root{--pink:#ff79b8;--violet:#b99aff;--ink:#170d25;--cream:#fff4fa}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:var(--cream);font-family:Manrope,Arial,sans-serif;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 15% 20%,#8d397044,transparent 28%),radial-gradient(circle at 85% 70%,#7955b344,transparent 32%);z-index:-2}
+#stars{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}.star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.55;animation:twinkle 3s infinite ease-in-out}
+@keyframes twinkle{50%{opacity:.15;transform:scale(.5)}}@keyframes float{50%{transform:translateY(-14px)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+nav{display:flex;justify-content:space-between;align-items:center;padding:24px 7%;position:absolute;top:0;width:100%;z-index:5}
+.logo{font-weight:800;letter-spacing:.08em}.logo span{color:var(--pink)}nav a{color:#e9d9ed;text-decoration:none;font-size:13px}
+.hero{min-height:76vh;display:grid;place-items:center;text-align:center;padding:130px 20px 65px;position:relative}
+.hero-inner{max-width:850px}.eyebrow{color:var(--pink);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:800}
+h1{font-family:'Playfair Display',serif;font-size:clamp(48px,9vw,92px);line-height:.98;margin:22px 0 24px}h1 em{color:var(--pink)}
+.lead{max-width:580px;margin:0 auto;color:#d9c8df;line-height:1.8;font-size:16px}
+.orbit{position:absolute;border:1px solid #ffb6d633;border-radius:50%;width:300px;height:300px;animation:float 6s ease-in-out infinite;pointer-events:none}
+.orbit:before,.orbit:after{content:"♡";position:absolute;color:#ff9bc8;font-size:27px}.orbit:before{top:20px;left:45px}.orbit:after{bottom:40px;right:10px}
+section{padding:65px 7%}.section-head{text-align:center;margin:0 auto 35px;max-width:650px}.section-head h2{font:600 clamp(34px,5vw,54px) 'Playfair Display',serif;margin:12px 0}.section-head p{color:#cbbbd3;line-height:1.7}
+.panel{max-width:720px;margin:auto;background:#ffffff0d;border:1px solid #ffffff20;border-radius:30px;padding:clamp(24px,5vw,45px);box-shadow:0 20px 80px #0003}
+.roles{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+.role{border:1px solid #ffffff28;background:#ffffff09;color:var(--cream);border-radius:20px;padding:23px 12px;cursor:pointer;transition:.25s;font:700 17px Manrope}
+.role .emoji{display:block;font-size:38px;margin-bottom:10px}.role small{display:block;font-size:11px;color:#cdbed5;font-weight:500;margin-top:7px}
+.role.selected{border-color:var(--pink);background:#ff79b821;box-shadow:0 0 28px #ff79b82b;transform:translateY(-3px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;padding:16px 27px;background:linear-gradient(110deg,var(--pink),#b18cff);color:#210f2b;font-weight:800;cursor:pointer;box-shadow:0 10px 35px #f16bad33;transition:.25s;font-family:Manrope}
+.btn:hover{transform:translateY(-3px)}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:20px}.btn.secondary{background:#ffffff12;color:#fff;border:1px solid #ffffff25;box-shadow:none}
+.status{display:none;text-align:center;margin-top:25px;padding:22px;border-radius:20px;background:#ffffff0a;border:1px solid #ffffff19}.status.show{display:block}
+.spinner{width:34px;height:34px;border:3px solid #ffffff25;border-top-color:var(--pink);border-radius:50%;margin:0 auto 15px;animation:spin .8s linear infinite}
+.status h3{font:600 27px 'Playfair Display',serif;margin:8px}.status p{color:#d4c4dc;line-height:1.6;font-size:14px}
+.matchbox{display:none;text-align:center;margin-top:20px;padding:25px;border-radius:22px;background:linear-gradient(135deg,#ff79b81c,#b99aff18);border:1px solid #ff9bc755;animation:pop .5s ease}.matchbox.show{display:block}
+.matchbox .heart{font-size:52px}.matchbox h3{font:600 34px 'Playfair Display',serif;margin:10px}.matchbox p{color:#e2d5e8;line-height:1.65}
+.note{font-size:11px;color:#a998b2;line-height:1.6;text-align:center;margin:18px auto 0;max-width:520px}
+footer{text-align:center;padding:35px 20px;color:#9d8ca7;font-size:12px;border-top:1px solid #ffffff12}
+@media(max-width:600px){nav{padding:20px 5%}.roles{gap:9px}.role{padding:18px 8px;font-size:15px}.orbit{width:240px;height:240px}.hero{min-height:70vh}}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<nav><div class="logo">LOVE<span>QUEST</span> ♡</div><a href="#search">Найти пару</a></nav>
+<header class="hero"><div class="orbit"></div><div class="hero-inner">
+<div class="eyebrow">маленькое любовное приключение</div>
+<h1>Найди свою<br><em>мурчалку</em></h1>
+<p class="lead">Выбери свою роль и нажми поиск. Если кто-то с противоположной ролью тоже ищет пару — вы совпадёте.</p>
+</div></header>
+<section id="search">
+<div class="section-head"><div class="eyebrow">поиск в реальном времени</div><h2>Кем ты хочешь быть?</h2><p>Кор ищет Мурчалку, а Мурчалка — своего Кора.</p></div>
+<div class="panel">
+<div class="roles">
+<button class="role" data-role="kor" onclick="chooseRole('kor')"><span class="emoji">👑</span>Кор<small>Ищу свою мурчалку</small></button>
+<button class="role" data-role="murch" onclick="chooseRole('murch')"><span class="emoji">🐾</span>Мурчалка<small>Ищу своего Кора</small></button>
+</div>
+<div class="actions"><button class="btn" id="searchBtn" onclick="startSearch()" disabled>♡ Начать поиск</button><button class="btn secondary" id="cancelBtn" onclick="cancelSearch()" style="display:none">Отменить</button></div>
+<div class="status" id="status"><div class="spinner" id="spinner"></div><h3 id="statusTitle">Ищем твою пару…</h3><p id="statusText">Оставь страницу открытой. Проверяем очередь поиска.</p></div>
+<div class="matchbox" id="matchbox"><div class="heart">💞</div><div class="eyebrow">у вас совпадение!</div><h3 id="matchTitle">Кор + Мурчалка</h3><p id="matchText">Вы одновременно искали друг друга.</p><button class="btn secondary" onclick="searchAgain()">Искать снова</button></div>
+<p class="note">Поиск анонимный: ник и контакты не собираются, личного чата нет. Не сообщай незнакомцам адрес, телефон, пароли или другие личные данные.</p>
+</div>
+</section>
+<footer>LOVEQUEST ♡ Неофициальный фанатский проект по мотивам Mobile Legends.</footer>
+<script>
+let selectedRole=null,userId=localStorage.getItem('lq_uid'),pollTimer=null,searching=false;
+if(!userId){userId=crypto.randomUUID();localStorage.setItem('lq_uid',userId)}
+const $=id=>document.getElementById(id);
+for(let i=0;i<55;i++){let s=document.createElement('i');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*3+'s';$('stars').appendChild(s)}
+function chooseRole(role){if(searching)return;selectedRole=role;document.querySelectorAll('.role').forEach(b=>b.classList.toggle('selected',b.dataset.role===role));$('searchBtn').disabled=false}
+async function api(action){const r=await fetch('/.netlify/functions/match',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,userId,role:selectedRole})});const d=await r.json();if(!r.ok)throw new Error(d.error||'Ошибка сервера');return d}
+async function startSearch(){if(!selectedRole)return;try{searching=true;$('searchBtn').disabled=true;$('cancelBtn').style.display='inline-flex';$('status').classList.add('show');$('matchbox').classList.remove('show');$('statusTitle').textContent='Ищем твою пару…';$('statusText').textContent='Оставь эту страницу открытой — ищем человека с другой ролью.';$('spinner').style.display='block';const d=await api('join');if(d.status==='matched'){showMatch(d.partnerRole);return}pollTimer=setInterval(checkMatch,2500)}catch(e){fail(e.message)}}
+async function checkMatch(){try{const d=await api('check');if(d.status==='matched')showMatch(d.partnerRole);else if(d.status==='expired'){clearInterval(pollTimer);searching=false;$('spinner').style.display='none';$('statusTitle').textContent='Время поиска истекло';$('statusText').textContent='Нажми «Начать поиск», чтобы попробовать снова.';$('cancelBtn').style.display='none';$('searchBtn').disabled=false}}catch(e){clearInterval(pollTimer);fail(e.message)}}
+function showMatch(partnerRole){clearInterval(pollTimer);searching=false;$('status').classList.remove('show');$('matchbox').classList.add('show');$('cancelBtn').style.display='none';$('matchTitle').textContent=selectedRole==='kor'?'Кор + Мурчалка':'Мурчалка + Кор';$('matchText').textContent=partnerRole==='kor'?'Нашёлся Кор! Вы одновременно искали друг друга.':'Нашлась Мурчалка! Вы одновременно искали друг друга.';$('searchBtn').disabled=false}
+async function cancelSearch(){clearInterval(pollTimer);try{await api('leave')}catch(e){}searching=false;$('status').classList.remove('show');$('cancelBtn').style.display='none';$('searchBtn').disabled=!selectedRole}
+async function searchAgain(){await cancelSearch();$('matchbox').classList.remove('show');startSearch()}
+function fail(msg){clearInterval(pollTimer);searching=false;$('searchBtn').disabled=!selectedRole;$('cancelBtn').style.display='none';$('status').classList.add('show');$('spinner').style.display='none';$('statusTitle').textContent='Не удалось подключиться';$('statusText').textContent=msg}
+window.addEventListener('beforeunload',()=>{if(searching)navigator.sendBeacon('/.netlify/functions/match',new Blob([JSON.stringify({action:'leave',userId})],{type:'application/json'}))});
+</script>
+</body></html>
